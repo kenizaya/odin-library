@@ -62,7 +62,7 @@ function displayBook() {
 
     let tr = document.createElement("tr");
     tr.dataset.attr = dattr;
-    table.appendChild(tr);
+    table.prepend(tr);
 
     for (const key in book) {
         let td = document.createElement("td");
