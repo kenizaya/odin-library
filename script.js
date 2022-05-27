@@ -58,6 +58,7 @@ function displayBook() {
     let dattr = myLibrary.length - 1;
     let book = myLibrary[dattr];
     const btn = document.createElement("button");
+    const stBtn = document.createElement("button");
 
     let tr = document.createElement("tr");
     tr.dataset.attr = dattr;
@@ -65,16 +66,31 @@ function displayBook() {
 
     for (const key in book) {
         let td = document.createElement("td");
-        td.textContent = book[key];
-        tr.appendChild(td);
+
+        if (key === "status") {
+            tr.appendChild(td);
+            stBtn.textContent = book[key]
+            td.appendChild(stBtn);
+
+            // Toggle read status
+            stBtn.addEventListener('click', (e) => {
+                let i = e.target.parentNode.parentNode.dataset.attr;
+                myLibrary[i].status = myLibrary[i].status === "Read" ? "Not Read" : "Read";
+                stBtn.textContent = stBtn.textContent === "Read" ? "Not Read" : "Read";
+                console.log(myLibrary);
+            })
+        } else {
+            td.textContent = book[key];
+            tr.appendChild(td);
+        }
     }
 
     // Remove book
     btn.textContent = "Delete";
-    tr.appendChild(btn);
+    tr.appendChild(document.createElement("td")).appendChild(btn);
 
     btn.addEventListener('click', (e) => {
-        const pn = e.target.parentNode;
+        const pn = e.target.parentNode.parentNode;
         let index = e.target.parentNode.dataset.attr;
         myLibrary.splice(index, 1);
 
@@ -82,10 +98,6 @@ function displayBook() {
         
     })
 
-}
-
-function removeBook() {
-    
 }
 
 const form = document.querySelector("form");
