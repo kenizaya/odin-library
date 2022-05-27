@@ -33,13 +33,24 @@ class Book {
 }
 
 
-
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
 
 function displayBook() {
-    myLibrary.forEach(book => console.log(book));
+    const table = document.querySelector("tbody");
+
+    myLibrary.forEach(book => {
+        let tr = document.createElement("tr");
+        table.appendChild(tr);
+
+        for (const key in book) {
+            let th = document.createElement("th");
+            th.textContent = book[key];
+            tr.appendChild(th);
+        }
+
+    })
 }
 
