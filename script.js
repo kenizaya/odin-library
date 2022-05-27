@@ -69,26 +69,27 @@ function displayBook() {
         tr.appendChild(td);
     }
 
-    btn.classList.add("delete");
+    // Remove book
     btn.textContent = "Delete";
     tr.appendChild(btn);
-    // btn.addEventListener('submit', (e) => {
-    //     console.log(e);
-    // })
 
+    btn.addEventListener('click', (e) => {
+        const pn = e.target.parentNode;
+        let index = e.target.parentNode.dataset.attr;
+        myLibrary.splice(index, 1);
 
+        pn.remove();
+        
+    })
 
 }
 
 function removeBook() {
     
-
-    
-
 }
 
 const form = document.querySelector("form");
-
+// const btn = document.querySelector("delete");
 
 form.addEventListener('submit', () => {
     addBookToLibrary();
