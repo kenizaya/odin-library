@@ -69,18 +69,30 @@ function displayBook() {
         tr.appendChild(td);
     }
 
+    btn.classList.add("delete");
     btn.textContent = "Delete";
     tr.appendChild(btn);
+    // btn.addEventListener('submit', (e) => {
+    //     console.log(e);
+    // })
+
 
 
 }
 
 function removeBook() {
+    
+
+    
 
 }
 
 const form = document.querySelector("form");
 
+
 form.addEventListener('submit', () => {
     addBookToLibrary();
+    form.reset();
+    
 })
+
