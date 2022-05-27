@@ -40,19 +40,27 @@ function addBookToLibrary() {
     const pages = form.elements['pages'].value;
     const status = form.elements['status'].value;
 
-    const book = new Book(title, author, pages, status);
+    if (title === "" || author === "" ||
+        pages === "" || status === "") {
+            alert("Please, fill in all the details before submiting");
+        } else {
+            const book = new Book(title, author, pages, status);
 
-    myLibrary.push(book);
-    displayBook();
+            myLibrary.push(book);
+            displayBook();
+        }
     
 }
 
 
 function displayBook() {
     const table = document.querySelector("tbody");
-    let book = myLibrary[myLibrary.length - 1];
+    let dattr = myLibrary.length - 1;
+    let book = myLibrary[dattr];
+    const btn = document.createElement("button");
 
     let tr = document.createElement("tr");
+    tr.dataset.attr = dattr;
     table.appendChild(tr);
 
     for (const key in book) {
@@ -60,6 +68,14 @@ function displayBook() {
         td.textContent = book[key];
         tr.appendChild(td);
     }
+
+    btn.textContent = "Delete";
+    tr.appendChild(btn);
+
+
+}
+
+function removeBook() {
 
 }
 
