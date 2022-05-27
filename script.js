@@ -1,24 +1,4 @@
 let myLibrary = [];
-    // title: "The Hobbit",
-    // author: "J.R.R. Tolkien",
-    // pages: 310,
-    // status: "Read",
-    // }, 
-
-    // {
-    // title: "Harry Potter",
-    // author: "J.K. Rowling",
-    // pages: 4100,
-    // status: "Read",
-    // }, 
-    
-    // {
-    // title: "Spaceman",
-    // author: "Mike Massimino",
-    // pages: 241,
-    // status: "Not Read"}];
-
-
 
 class Book {
     constructor(title, author, pages, status) {
@@ -49,7 +29,6 @@ function addBookToLibrary() {
             myLibrary.push(book);
             displayBook();
         }
-    
 }
 
 
@@ -69,7 +48,8 @@ function displayBook() {
 
         if (key === "status") {
             tr.appendChild(td);
-            stBtn.textContent = book[key]
+            stBtn.textContent = book[key];
+            stBtn.classList.add("status");
             td.appendChild(stBtn);
 
             // Toggle read status
@@ -78,7 +58,7 @@ function displayBook() {
                 myLibrary[i].status = myLibrary[i].status === "Read" ? "Not Read" : "Read";
                 stBtn.textContent = stBtn.textContent === "Read" ? "Not Read" : "Read";
                 console.log(myLibrary);
-            })
+            });
         } else {
             td.textContent = book[key];
             tr.appendChild(td);
@@ -87,6 +67,7 @@ function displayBook() {
 
     // Remove book
     btn.textContent = "Delete";
+    btn.classList.add("delete");
     tr.appendChild(document.createElement("td")).appendChild(btn);
 
     btn.addEventListener('click', (e) => {
